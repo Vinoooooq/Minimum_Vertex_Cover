@@ -1,0 +1,123 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+import sys
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+import numpy as np
+import ast
+
+def plotQRTD(filename, optimal):
+    timeArr = []
+    sol = []
+    trace = open(filename, 'r')
+    for line in trace:
+        info= list(map(lambda x: x, line.split(',')))
+        timeArr.append(float(info[0]))
+        sol.append(int(info[1]))
+    trace.close()
+    print timeArr
+    print sol
+    top = max(timeArr)
+    but = min(timeArr)
+    size = len(sol)
+    print size
+    step = (top - but) / 10
+    timestep = np.arange(0.0,600.0,0.01)
+    # timestep = [i  * step + but for i in range(11)]
+    percent=[0.01,0.06,0.062,0.064,0.066]
+    x = []
+    y = []
+    for a in range(5):
+        x.append([])
+        y.append([])
+        thredshold = optimal + percent[a] * optimal
+        print thredshold
+        for i in range(len(timestep)):
+            count = 0
+            for idx in range(len(timeArr)):
+                # if timeArr[idx] > timestep[i]:
+                #     break
+                if (sol[idx] <= thredshold) and (timeArr[idx] <= timestep[i]) :
+                    count += 1
+            x[a].append(timestep[i])
+            y[a].append(1.0 * count / size)
+            # print x[a]
+            # print y[a]
+        plt.plot(x[a],y[a],label=str(100*percent[a])+'%')
+        plt.xlabel("run-time[CPU sec]")
+        plt.ylabel("P(solve)")
+        plt.title("QRTD for Iterated Local Search on power")
+    plt.legend()
+    plt.show()
+    return 0
+
+
+name = '../power_trace/power_LS1.trace'
+plotQRTD(name, 2203)
+
+#print(os.path.relpath('/Users/guowanyang/Desktop/CSE6140-CSE\ Algorithm/project/power_trace/power_LS1.trace'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# file=open('../solution/football_Heur_600_8.trace')
+# file=file.read().splitlines()
+# x=[]
+# y=[]
+# tol=[]
+# optimal=94
+# percent=[0.01,0.03,0.05,0.1,0.15]
+# for i in range(len(percent)):
+#     tol.append(optimal*(1+percent[i]))
+# for i in range(len(file)):
+#         file[i]=file[i].split(',')
+# for i in range(len(file)):
+#     x.append(file[i][0])
+# for i in range(len(file)):
+#     y.append(file[i][1])
+# print file
+# print tol
+
+
+# plt.figure()
+# plt.plot(x,y)
+# plt.savefig("QRTD.jpg")
+# plt.xlabel("run-time[CPU sec]")
+# plt.ylabel("P(solve)")
+# plt.title("QRTD for various solutions")
+
+# print(os.path.relpath('/Users/guowanyang/Downloads/hw4-skeleton/Q2/hw4-data.csv'))
+# file=open('../../../../Downloads/hw4-skeleton/Q2/hw4-data.csv')
+# file=file.read().splitlines()
+# for i in range(len(file)):
+#     file[i]=file[i].split(',')
+# X=dict(zip(file[0],file[1]))
+# Label=[]
+# for i in range(1,len(file)):
+#     Label.append(file[i][15])
+# print file
+# print Label
+# print X['A5']
+
+
+
+

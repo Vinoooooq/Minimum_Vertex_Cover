@@ -1,0 +1,8 @@
+Wanyang Guo (wguo73) (myself): My work included the Heuristics algorithm and writing the code for generating QRTDs. I do the "Empirical evaluation part" in final report and my part of algorithm discription in part "Algorithms" and I write the code "exec.py" as our executable and the README txt file.
+I will give myself a 10 points for this project.
+
+Yongrui Lin (ylin407): His work incuded the BnB algorithm and writing the code for generating SQDs. He did the "Introduction", "Discusiion" and "Conclusion" in final report. It's hard to write BnB and his code works very well.
+I will give him a 10 points for this project.
+
+Amelia Glaese (aglaese3): She is kind of like a leader in our group. Her work included the LS algorithms and writing the code for generating Box plots. She did the "Related work" in final report and she checked the whole report and made modification. She is very effective and did job very nice. 
+She deserves an 10 points for this project.
